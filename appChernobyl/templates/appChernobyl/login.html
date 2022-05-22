@@ -1,0 +1,32 @@
+{% extends "appChernobyl/inicio.html" %}
+<!--- heredo del padre --->
+
+{% load static %}
+
+{% block CssQueCambia %}
+<link href="{% static 'appChernobyl/css/styles2.css' %}" rel="stylesheet" />
+{% endblock %}
+
+{% block ContentThatChanges %}
+<!--- Todo lo que va a cambiar en la pag stalker --->
+
+{% if not request.user.is_authenticated %}
+                        <h1>Please Sign In</h1>
+{% endif %}
+
+<form style= "color: bisque;"  action="" method="POST">
+    
+    {% csrf_token %}
+    
+    {{ formulario.as_p }}
+    
+   
+    <button class="btn btn-primary" type="submit"> Log In </button>
+
+
+</form>
+
+</br>
+<p style="color:bisque">Don´t have an account? <a class="register" href="{% url 'Register' %}">Sign Up here</a></p>
+
+{% endblock %}

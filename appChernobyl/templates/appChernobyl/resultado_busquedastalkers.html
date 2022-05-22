@@ -1,0 +1,40 @@
+{% extends "appChernobyl/inicio.html" %}
+<!--- heredo del padre --->
+
+{% load static %}
+
+
+{% block ContentThatChanges %}
+
+<body>
+
+    <h2 class="text-white-50 mx-auto mt-2 mb-5">Registered Stalker</h2>
+
+    {% if stalkers %}
+
+
+
+    <ul>
+    {% for stalker in stalkers %}
+
+        <li><p style="color:rgb(250, 215, 236)"> Name:  {{stalker.name}}    </li></p>
+        <li><p style="color:rgb(250, 215, 235)"> Surname: {{stalker.surname}}   </li></p>
+        <li><p style="color:rgb(250, 215, 244)"> Faction: {{stalker.faction}}   </li></p>
+
+    {% endfor %}
+    
+    </ul>
+
+    {% else %}
+
+    <p style="color: red;"> No stalkers found </p>
+
+    {% endif %}
+
+    <a class="btn btn-secondary" href="{% url 'busqueda_stalkers' %}">Search Another Stalker</a>
+    <p> </p>
+    <a class="btn btn-primary" href="{% url 'inicio' %}">Home Page</a>
+
+</body>
+
+{% endblock %}

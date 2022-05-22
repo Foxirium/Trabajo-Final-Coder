@@ -1,0 +1,38 @@
+{% extends "appChernobyl/inicio.html" %}
+
+{% load static %}
+
+{% block ContentThatChanges %}
+<!--- Todo lo que va a cambiar en la pag levels --->
+    {% if posts %}
+        {% for post in posts %}
+
+               
+
+            <h3 class="post title"> <p href=> {{ post.title }} </p> </h3>
+            <hr/>
+
+                
+
+            
+
+            <h2 style="align-content: center;" > {{ post.subtitle }} </h2>
+
+            
+             <p class="post body"> {{ post.body }} </p> 
+
+            <p class="post-meta"> Write By 
+                <a> {{ post.author }} </a> el
+                            {{ post.date }}
+
+            </p>
+        {% endfor %}
+    {% else %}
+        <h1> No existen post registrados </h1>
+
+    {% endif %}
+
+{% endblock %}
+
+
+

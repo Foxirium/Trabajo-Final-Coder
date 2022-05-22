@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+
+ <!--- Estilo para los botones-->
+
+<style>
+
+.button {
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.button1 {
+  background-color: white; 
+  color: black; 
+  border: 2px solid #4CAF50;
+}
+
+.button1:hover {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.button2 {
+  background-color: white; 
+  color: red; 
+  border: 2px solid #008CBA;
+}
+
+.button2:hover {
+  background-color: #2f0eec;
+  color: yellow;
+}
+
+</style>
+
+        
+
+        {% load static %}
+
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Chernobyl-The Zone is Waiting</title>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        {% block CssQueCambia %}
+        <link href="{% static 'appChernobyl/css/styles.css' %}" rel="stylesheet" />
+        {% endblock %}
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href="#page-top">Top</a>
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto">
+                        
+                        
+                        <li class="nav-item" ><a class="button button2"  href="{% url 'inicio' %}">     Homepage     </a></li>
+                        <li class="nav-item" ><a class="button button2"  href="{% url 'stalkers' %}">   Stalkers     </a></li>
+                        <li class="nav-item" ><a class="button button2"  href="{% url 'factions' %}">   Factions     </a></li>
+                        <li class="nav-item" ><a class="button button2"  href="{% url 'artifacts' %}">  Artifacts    </a></li>
+                        <li class="nav-item" ><a class="button button2"  href="{% url 'levels' %}">     Levels       </a></li>
+                        <li class="nav-item" ><a class="button button2"  href="{% url 'Post' %}">       Posts        </a></li>
+
+
+                        <!--Si el usuario esta logeado se mostrara su nombre-->
+
+                        {% if request.user.is_authenticated %}
+                        <li class="nav-item"><a class="button button1"   href="{% url 'editarPerfil' %}"> {{user.username}}</a></li>
+                        {% endif %}
+
+
+
+                    </ul>
+                    <p><img height= "40px" src="{{avatar}}" alt=""/></p>
+                </div>
+            </div>
+        </nav>
+        <!-- Masthead-->
+        <header class="masthead">
+            <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
+                <div class="d-flex justify-content-center">
+                    <div class="text-center">
+
+
+                        {% block ContentThatChanges %}
+
+                        <h1 class="mx-auto my-0 text-uppercase">Chernobyl Archives</h1>
+                        <h2 class="text-white-50 mx-auto mt-2 mb-5">The Zone is waiting..</h2>
+
+                        {% if request.user.is_authenticated %}
+                        <img height= "40px" src="{{avatar}}" alt=""/>
+                        <p class = "text-muted small mb-4 mb-lg-0" style="color:crimson"> You have entered the zone, {{user.username}} </p>
+                        {% endif %}
+
+                        {% if not request.user.is_authenticated %}
+                        <a class="btn btn-primary" href="{% url 'Login' %}">LogIn</a>
+                        <p></p>
+                        <p style="color:bisque">Don´t have an account? <a class="register" href="{% url 'Register' %}">Sign Up here</a></p>
+                        {% endif %}
+
+                        <p></p>
+                        <h3><p style="color:rebeccapurple">{{mensaje}}</h3></p>
+                    </div>
+                </div>
+            </div>
+        </header>
+      
+        <!-- Footer-->
+        <footer
+         class="footer bg-black small text-center text-white-50">
+         <div class="container px-4 px-lg-5">Do you think the world is safe?</div>
+         <div class="container px-4 px-lg-5">Copyright &copy; Chernobyl Archives 2022</div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <!-- * *                               SB Forms JS                               * *-->
+        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    </body>
+</html>
+{% endblock %} 

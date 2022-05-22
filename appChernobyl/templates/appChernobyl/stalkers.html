@@ -1,0 +1,49 @@
+{% extends "appChernobyl/inicio.html" %}
+<!--- heredo del padre --->
+
+{% load static %}
+
+{% block CssQueCambia %}
+<link href="{% static 'appChernobyl/css/styles2.css' %}" rel="stylesheet" />
+{% endblock %}
+
+{% block ContentThatChanges %}
+<!--- Todo lo que va a cambiar en la pag stalker --->
+
+
+<h1 class="mx-auto my-0 text-uppercase">Stalker Page</h1>
+<h2 class="text-white-50 mx-auto mt-2 mb-5">Register Stalker</h2>
+
+
+{% if miFormulario.errors %}
+
+<p style="color: red;"> Estan mal los datos</p>
+
+{% endif %}
+
+
+<form style= "color: bisque;"  action="" method="POST">{%csrf_token %}
+
+    <table>
+
+        {{ miFormulario.as_table }}
+
+    </table> 
+
+    <input type="submit", value="Register Stalker">
+
+</form>
+
+</br>
+
+<a class="btn btn-primary" href="{% url 'busqueda_stalkers' %}">Search Stalker</a>
+
+
+
+
+
+
+
+
+
+{% endblock %}

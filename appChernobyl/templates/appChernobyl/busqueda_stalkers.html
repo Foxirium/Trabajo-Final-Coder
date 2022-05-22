@@ -1,0 +1,30 @@
+{% extends "appChernobyl/inicio.html" %}
+
+{% load static %}
+
+
+{% block ContentThatChanges %}
+<!--- Todo lo que va a cambiar en la pag levels --->
+<body>
+    {% if buscar.errors %}
+
+    <p style="color: red;"> Estan mal los datos</p>
+    
+    {% endif %}
+
+    <h1 class="mx-auto my-0 text-uppercase">Search Page</h1>
+
+    <form action="/appChernobyl/buscar/" method="GET">
+    
+        <input type="text" name="name">
+    
+        <input type="submit" value="Search Stalker">
+    
+    
+    </form>
+    
+</body>
+
+
+
+{% endblock %}

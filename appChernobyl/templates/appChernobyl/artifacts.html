@@ -1,0 +1,50 @@
+{% extends "appChernobyl/inicio.html" %}
+
+{% load static %}
+
+{% block CssQueCambia %}
+<link href="{% static 'appChernobyl/css/styles3.css' %}" rel="stylesheet" />
+{% endblock %}
+
+{% block ContentThatChanges %}
+<!--- Todo lo que va a cambiar en la pag artefactos --->
+
+<h1 class="mx-auto my-0 text-uppercase">Artifact Page</h1>
+<h2 class="text-white-50 mx-auto mt-2 mb-5">Registered Artifacts</h2>
+
+<table class="table table-bordered">
+
+    <thead>
+        <tr>
+            <td style="color:bisque"> Name</td>
+            <td style="color:bisque"> Price</td>
+            <td style="color:bisque"> Advantage </td>
+            <td style="color:bisque"> Disadvantage </td>
+            <td style="color:bisque"> Date Of Birth </td>
+
+        </tr>
+    </thead>
+
+
+    <tbody> {% if artifacts %}
+            {% for artifact in artifacts %}
+
+        <tr>
+            <td style="color:bisque">   {{ artifact.name }}</td>
+            <td style="color:bisque">   {{ artifact.price }}</td>
+            <td style="color:bisque">   {{ artifact.advantage }}</td>
+            <td style="color:bisque">   {{ artifact.disadvantage }}</td>
+            <td style="color:bisque">   {{ artifact.dateOfBirth }}</td>
+        </tr>
+
+        {% endfor %}
+        {% else %}
+
+        <h1> No se encontraron artefactos </h1>
+
+        {% endif %}
+    </tbody>
+        
+</table>
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "appChernobyl/inicio.html" %}
+
+{% load static %}
+
+{% block CssQueCambia %}
+<link href="{% static 'appChernobyl/css/styles3.css' %}" rel="stylesheet" />
+{% endblock %}
+
+{% block ContentThatChanges %}
+<!--- Todo lo que va a cambiar en la pag artefactos --->
+
+<h1 class="mx-auto my-0 text-uppercase">Artifact Page</h1>
+<h2 class="text-white-50 mx-auto mt-2 mb-5">Register Artifacts</h2>
+
+
+
+<form action="" method="POST">{%csrf_token %}
+
+    <table>
+
+        {{ miFormulario.as_table }}
+
+    </table>
+
+    <input type="submit", value="Register Artifact">
+
+</form>
+
+
+{% endblock %}

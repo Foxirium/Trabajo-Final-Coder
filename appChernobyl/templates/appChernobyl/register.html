@@ -1,0 +1,26 @@
+{% extends "appChernobyl/inicio.html" %}
+<!--- heredo del padre --->
+
+{% load static %}
+
+{% block CssQueCambia %}
+<link href="{% static 'appChernobyl/css/styles2.css' %}" rel="stylesheet" />
+{% endblock %}
+
+{% block ContentThatChanges %}
+
+
+
+<form action="" method="POST">
+    
+        {% csrf_token %}
+
+
+        {{ formulario.as_p }}
+
+   
+    <button type="submit"> Register </button>
+
+</form>
+
+{% endblock %}

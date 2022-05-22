@@ -2,29 +2,57 @@
 
 {% load static %}
 
-{% block CssQueCambia %}
-<link href="{% static 'appChernobyl/css/styles4.css' %}" rel="stylesheet" />
-{% endblock %}
 
 {% block ContentThatChanges %}
 <!--- Todo lo que va a cambiar en la pag facciones --->
 
-<h1 class="mx-auto my-0 text-uppercase">Faction Page</h1>
-<h2 class="text-white-50 mx-auto mt-2 mb-5">Register Your Faction</h2>
+<h1 class="mx-auto my-0 text-uppercase"> Factions Page </h1>
+<h2 class="text-white-50 mx-auto mt-2 mb-5"> Registered Factions </h2>
 
 
+<!--- Creamos tabla para visualizar las facciones --->
+<table class="table table-bordered">
 
-<form action="" method="POST">{%csrf_token %}
+    <thead style="color:bisque">
 
-    <table>
+        <tr>
 
-        {{ miFormulario.as_table }}
+            <td> Name </td>
+            <td> Founder </td>
+            <td> Leader </td>
+            <td> Allies </td>
+            <td> Neutral </td>
+            <td> Enemies </td>
 
-    </table>
+        </tr>
+    </thead>
 
-    <input type="submit", value="Register Faction">
+<!--- Si existen facciones --->
+<!--- Por cada faccion que traiga los atributos, name, founder, leader...etc --->
+    <tbody> {% if factions %}
+            {% for faction in factions %}
+        <tr>
+            <td style="color:bisque"> {{faction.name}} </td>
+            <td style="color:bisque"> {{faction.founder}} </td>
+            <td style="color:bisque"> {{faction.leader}} </td>
+            <td style="color:green"> {{faction.allies}} </td>
+            <td style="color:yellow"> {{faction.neutral}} </td>
+            <td style="color:red"> {{faction.enemies}} </td>    
+        </tr>
+            {% endfor %}
 
-</form>
+<!--- Si no existen facciones --->
+
+            {% else %}
+
+            <h1> No se encontraron facciones </h1>
+
+            {% endif %}
+    </tbody>
+
+
+</table>
+
 
 
 

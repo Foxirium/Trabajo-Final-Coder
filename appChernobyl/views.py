@@ -35,7 +35,7 @@ def stalkers(request):
 
             if miFormulario.is_valid(): #Si pasa la validacion
                 informacion = miFormulario.cleaned_data
-                stalker = Stalkers (name=informacion['Name'], surname=informacion['Surname'], email=informacion['Email'], faction=informacion['Faction'], dateOfBirth=informacion['DateOfBirth']) #modelo=informacion[form]
+                stalker = Stalker (name=informacion['Name'], surname=informacion['Surname'], email=informacion['Email'], faction=informacion['Faction'], dateOfBirth=informacion['DateOfBirth']) #modelo=informacion[form]
                 stalker.save()
                 return render(request, 'appChernobyl/inicio.html') #Vuelvo a inicio
 
@@ -61,7 +61,7 @@ def buscar(request):
 
 
         name = request.GET['name']
-        stalkers = Stalkers.objects.filter(name__icontains=name)
+        stalkers = Stalker.objects.filter(name__icontains=name)
 
         return render(request, "appChernobyl/resultado_busquedastalkers.html", {"name":name, "stalkers":stalkers}) 
 
@@ -77,23 +77,12 @@ def buscar(request):
 
 #Formulario Facciones
 @login_required
-def factions(request):
+def factions_list(request):
 
-    if request.method == 'POST': #Si entra por Post
+    factions = Faction.objects.filter()
+    contexto = {"factions":factions}
 
-            miFormulario = Formulario_Factions(request.POST)
-
-
-            if miFormulario.is_valid(): #Si pasa la validacion
-                informacion = miFormulario.cleaned_data
-                factions = Factions (fName=informacion['Name'], fFounder=informacion['Founder'], fAge=informacion['Age']) #modelo=informacion[form]
-                factions.save()
-                return render(request, 'appChernobyl/inicio.html') #Vuelvo a inicio
-    else: #Si entra por Get
-        miFormulario = Formulario_Factions() #Formulario Vacio
-    return render(request, 'appChernobyl/factions.html', {"miFormulario":miFormulario}) 
-
-   # return render(request, 'appChernobyl/factions.html')
+    return render(request, "appChernobyl/factions.html", contexto)  
 
 
 
@@ -110,7 +99,7 @@ def factions(request):
 
 
 
-#Formulario Artefactos
+#Lista Artefactos
 @login_required 
 def artifacts_list(request):
 

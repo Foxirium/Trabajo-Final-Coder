@@ -5,7 +5,7 @@ from django.contrib.auth.views import LogoutView
 urlpatterns = [
     path('', inicio, name = 'inicio'),
     path('stalkers/', stalkers, name = 'stalkers'),
-    path('factions/', factions, name = 'factions'),
+    path('factions/', factions_list, name = 'factions'),
     path('artifacts/', artifacts_list, name = 'artifacts'),
     path('levels/', levels, name = 'levels'),
     #path('formulario_stalkers/', formulario_stalkers, name= 'formulario_stalkers'),

@@ -18,9 +18,12 @@ class Formulario_Stalkers(forms.Form):
 #Clase Formulario Facciones
 class Formulario_Factions(forms.Form):
 
-    Name = forms.CharField(max_length=20) 
-    Founder = forms.CharField(max_length=30)
-    Age = forms.IntegerField()
+    name = forms.CharField(max_length=20) 
+    founder = forms.CharField(max_length=30)
+    leader = forms.CharField(max_length=30)
+    allies = forms.CharField(max_length=100)
+    neutral = forms.CharField(max_length=100)
+    enemies = forms.CharField(max_length=100)
 
 #-------------------------------------------------------------------------
 #Clase Formulario Artefactos

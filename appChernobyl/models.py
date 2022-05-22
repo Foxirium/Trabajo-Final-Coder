@@ -6,7 +6,7 @@ from ckeditor.fields import RichTextField
 # Create your models here.
 
 #Creo clase stalker e importo modelos segun datos a introducir
-class Stalkers(models.Model):
+class Stalker(models.Model):
 
     name = models.CharField(max_length=30, null=True)
     surname = models.CharField(max_length=30, null=True)
@@ -19,13 +19,17 @@ class Stalkers(models.Model):
 
 
 #Creo clase factions e importo modelos segun datos a introducir
-class Factions(models.Model):
-    fName = models.CharField(max_length=20, null=True)
-    fFounder = models.CharField(max_length=30, null=True)
-    fAge = models.IntegerField(null=True)
+class Faction(models.Model):
+    name = models.CharField(max_length=20, null=True)
+    founder = models.CharField(max_length=30, null=True)
+    leader = models.CharField(max_length=30, null=True)
+    allies = models.CharField(max_length=100, null=True)
+    neutral = models.CharField(max_length=100, null=True)
+    enemies = models.CharField(max_length=100, null=True)
+
 
     def __str__(self):
-        return self.fName+" - "+ self.fFounder   
+        return self.name+" - "+ self.founder   
 
 #Creo clase artifacts e importo modelos segun datos a introducir
 class Artifact(models.Model):

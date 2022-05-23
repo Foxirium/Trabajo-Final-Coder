@@ -1,6 +1,8 @@
+
 from turtle import title
 from django.http import HttpResponse
 from django.shortcuts import render
+from django.urls import reverse_lazy
 from pkg_resources import require
 from appChernobyl.forms import Formulario_Stalkers, Formulario_Factions, Formulario_Artifacts, UserCreationForm, UserRegisterForm, UserEditForm, AddAvatar, Formulario_Posts
 from appChernobyl.models import *
@@ -8,6 +10,9 @@ from django.http import HttpResponse
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
+from django.views.generic import ListView
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 
 
@@ -19,6 +24,17 @@ def inicio(request):
     #avatar = Avatar.objects.filter(user=request.user)#Me trae el objeto con el model avatar del usuario
 
     return render(request, 'appChernobyl/inicio.html') #{'avatar':avatar[0].avatar.url}) #traeme el primer elemento, que en este casi simepre es 1
+
+
+
+
+
+
+
+
+
+
+
 
 
 #------------------------------------------------------------------------------------------------------
@@ -45,6 +61,51 @@ def stalkers(request):
             miFormulario = Formulario_Stalkers() #Formulario Vacio
 
     return render(request, 'appChernobyl/stalkers.html', {"miFormulario":miFormulario})    
+#------------------------------------------------------------------------------------------------------
+
+
+
+
+class StalkerList(ListView):
+
+    model = Stalker
+    template_name = 'appChernobyl/stalker_list.html'
+
+class StalkerDetail(DetailView):
+
+    model = Stalker
+    template_name = 'appChernobyl/stalker_detalle.html'
+
+class StalkerCreate(CreateView):
+
+    model = Stalker
+    success_url = reverse_lazy ('stalker_listar')
+    fields = ['name', 'surname','faction', 'email', 'dateOfBirth']    
+
+class StalkerUpdate(UpdateView):
+
+    model = Stalker
+    success_url = reverse_lazy ('stalker_listar')
+    fields = ['name', 'surname','faction', 'email', 'dateOfBirth']
+
+class StalkerDelete(DeleteView): 
+
+    model = Stalker
+    success_url = reverse_lazy ('stalker_listar')
+    fields = ['name', 'surname','faction', 'email', 'dateOfBirth']       
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 #------------------------------------------------------------------------------------------------------
@@ -71,12 +132,29 @@ def buscar(request):
 
 
               
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #------------------------------------------------------------------------------------------------------
 
-#Formulario Facciones
-@login_required
+#Lista Facciones
 def factions_list(request):
 
     factions = Faction.objects.filter()
@@ -99,8 +177,7 @@ def factions_list(request):
 
 
 
-#Lista Artefactos
-@login_required 
+#Lista Artefactos 
 def artifacts_list(request):
 
      artifacts = Artifact.objects.filter()

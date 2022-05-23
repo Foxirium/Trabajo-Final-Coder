@@ -1,0 +1,31 @@
+{% extends "appChernobyl/inicio.html" %}
+<!--- heredo del padre --->
+
+{% load static %}
+
+{% block CssQueCambia %}
+<link href="{% static 'appChernobyl/css/styles2.css' %}" rel="stylesheet" />
+{% endblock %}
+
+{% block ContentThatChanges %}
+<!--- Todo lo que va a cambiar en la pag stalker --->
+
+
+
+<form style= "color: bisque;"  action="" method="POST">{% csrf_token %}
+
+    estas seguro que deseas borrar el stalker "{{ object }}"?
+    
+    <input type="submit", value="Yes">
+
+</form>
+
+</br>
+
+
+
+
+
+
+
+{% endblock %}

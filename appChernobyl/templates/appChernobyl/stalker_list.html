@@ -1,0 +1,46 @@
+{% extends "appChernobyl/inicio.html" %}
+<!--- heredo del padre --->
+
+{% load static %}
+
+{% block CssQueCambia %}
+<link href="{% static 'appChernobyl/css/styles2.css' %}" rel="stylesheet" />
+{% endblock %}
+
+{% block ContentThatChanges %}
+<!--- Todo lo que va a cambiar en la pag stalker --->
+
+<table class="table table-bordered">
+        <thead style="color:bisque">
+                <tr>
+                        <td>NAME</td>
+                        <td>SURNAME</td>
+                        <td>FACTION</td>
+                        <td>ACTIONS</td>
+
+                        
+                </tr>
+        </thead>
+
+        <tbody> {% for stalker in object_list %}
+
+
+                <td style="color:bisque"> {{stalker.name}}
+                <td style="color:bisque"> {{stalker.surname}}
+                <td style="color:bisque"> {{stalker.faction}}
+        
+                        <td>
+                                <button><a href="{% url 'stalker_detalle' stalker.id %}">Detail</a></button>
+                                <button><a href="{% url 'stalker_editar' stalker.id %}">Update</a></button>
+                                <button><a href="{% url 'stalker_borrar' stalker.id %}">Delete</a></button></td>
+                        </td>
+        </tbody>
+
+{% endfor %}  
+
+</table>
+
+<button class="btn btn-primary"><a style="color:brown" href="{% url 'stalker_crear' %}">CREATE</a></button>
+
+
+{% endblock %}

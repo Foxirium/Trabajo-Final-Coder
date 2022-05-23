@@ -19,6 +19,12 @@ urlpatterns = [
     path('post/', post, name = 'Post'),
     path('crearPost/', crearPost, name= 'crearPost'),
 
+    path('stalker/nuevo/', StalkerCreate.as_view(), name='stalker_crear'),
+    path('stalker/<pk>', StalkerDetail.as_view(), name='stalker_detalle'),
+    path('stalker/list/', StalkerList.as_view(), name='stalker_listar'),
+    path('stalker/editar/<pk>', StalkerUpdate.as_view(), name='stalker_editar'),
+    path('stalker/borrar/<pk>', StalkerDelete.as_view(), name='stalker_borrar'),
+
 
 
     path('padre/', padre, name='padre'),

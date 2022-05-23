@@ -22,26 +22,19 @@
 {% endif %}
 
 
+<form style= "color: bisque;"  action="" method="POST">{% csrf_token %}
 
-<form style= "color: bisque;"  action="" method="POST">{%csrf_token %}
 
-    <table>
+        {{ form.as_p }}
 
-        {{ miFormulario.as_table }}
 
-    </table> 
-
-    <input type="submit", value="Register Stalker">
+    <input type="submit", value="CREATE">
 
 </form>
 
 </br>
 
-<a class="btn btn-primary" href="{% url 'busqueda_stalkers' %}">Search Stalker</a>
-
-
-
-
+<a class="btn btn-primary" href="{% url 'stalker_listar' %}">Search Stalker</a>
 
 
 

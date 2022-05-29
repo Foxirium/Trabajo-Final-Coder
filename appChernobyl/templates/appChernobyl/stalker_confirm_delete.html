@@ -10,7 +10,8 @@
 {% block ContentThatChanges %}
 <!--- Todo lo que va a cambiar en la pag stalker --->
 
-
+{% if not request.user.is.authenticated %}
+    
 
 <form style= "color: bisque;"  action="" method="POST">{% csrf_token %}
 
@@ -22,10 +23,14 @@
 
 </br>
 
+{% else %}
+
+    <h2> No tiene permisos para realizar esa accion </h2>
+
+{% endif %}
 
 
-
-
+<button class="button button2"><a style="color:brown" href="{% url 'stalkers' %}">Back</a></button>
 
 
 {% endblock %}

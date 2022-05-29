@@ -22,6 +22,7 @@ from appChernobyl.urls import inicio
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('appChernobyl/', include('appChernobyl.urls')),
+    path('appChernobylBlog/', include('appChernobylBlog.urls')),
     path('', inicio),
     
 

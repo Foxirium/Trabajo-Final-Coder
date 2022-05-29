@@ -1,12 +1,15 @@
+from distutils.command.upload import upload
 from multiprocessing.dummy import current_process
 from django.db import models
 from django.contrib.auth.models import User
 from ckeditor.fields import RichTextField
 
+
 # Create your models here.
 
 #Creo clase stalker e importo modelos segun datos a introducir
 class Stalker(models.Model):
+
 
     name = models.CharField(max_length=30, null=True)
     surname = models.CharField(max_length=30, null=True)
@@ -76,7 +79,7 @@ class Post(models.Model):
     title= models.CharField(null = False, blank= False, max_length= 50)
     subtitle= models.CharField(null= False, blank= False, max_length=100)
     body= RichTextField()
-    author= models.CharField(null=False, blank = False, max_length=50, default='Random Stalker')
+    author= models.CharField (null=False, blank = False, max_length=50)
     date= models.DateField('Fecha de Creacion')
     status = models.BooleanField('Publish/Not Publish', default = True)
 
@@ -86,4 +89,14 @@ class Post(models.Model):
         return self.title + " - " + self.author
 
 
-    
+
+
+
+
+
+
+
+
+
+
+

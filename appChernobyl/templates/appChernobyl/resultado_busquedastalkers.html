@@ -17,10 +17,32 @@
     <ul>
     {% for stalker in stalkers %}
 
-        <li><p style="color:rgb(250, 215, 236)"> Name:  {{stalker.name}}    </li></p>
-        <li><p style="color:rgb(250, 215, 235)"> Surname: {{stalker.surname}}   </li></p>
-        <li><p style="color:rgb(250, 215, 244)"> Faction: {{stalker.faction}}   </li></p>
-
+<table class="table table-bordered">
+        <thead style="color:bisque">
+                <tr>
+                        <td>NAME</td>
+                        <td>SURNAME</td>
+                        <td>FACTION</td>
+                        <td>EMAIL</td>
+                        <td>DATE OF BIRTH</td>
+                        
+                </tr>
+        </thead>
+    
+    
+    
+    
+            <tbody>
+                <td style="color:bisque"> {{stalker.name}}</td>
+                <td style="color:bisque"> {{stalker.surname}}</td>
+                <td style="color:bisque">{{stalker.faction}}</td>
+                <td style="color:bisque"> {{stalker.email}} </td>
+                <td style="color:bisque"> {{stalker.dateOfBirth}}</td>
+            </tbody>
+    
+    
+    <p>
+</table>   
     {% endfor %}
     
     </ul>
@@ -31,10 +53,11 @@
 
     {% endif %}
 
-    <a class="btn btn-secondary" href="{% url 'busqueda_stalkers' %}">Search Another Stalker</a>
+    <a class="btn btn-sm btn-primary" href="{% url 'busqueda_stalkers' %}">Search Another Stalker</a>
     <p> </p>
-    <a class="btn btn-primary" href="{% url 'inicio' %}">Home Page</a>
+    <a class="btn btn-sm btn-secondary" href="{% url 'inicio' %}">Homepage</a>
 
 </body>
+
 
 {% endblock %}

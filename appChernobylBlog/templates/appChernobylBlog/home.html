@@ -1,0 +1,23 @@
+{% extends "appChernobylBlog/padre.html"  %}
+
+
+{% block ContenidoQueCambia %}
+
+
+    <title>Document</title>
+</head>
+<br>
+<body>
+    <h1>Posts</h1>
+    {% for post in object_list %}
+    <br>
+        <a href="{% url 'post_detail' post.id %}"> {{post.title}} - {{post.author}}</a> <br>
+        {{post.body}}
+
+
+    {% endfor %}
+</body>
+</html>
+
+
+{% endblock %}

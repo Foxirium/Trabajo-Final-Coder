@@ -1,0 +1,18 @@
+{% extends "appChernobylBlog/padre.html"  %}
+
+<!---Cambio el titulo de la pag por el titulo de cada post --->
+{% block title %} {{post.title}} {% endblock %}
+
+
+{% block ContenidoQueCambia %}
+
+
+
+<h1> {{post.title}} </h1>
+<small> by: {{post.author}}</small> <br>
+
+
+   <h3> {{post.body}} </h3>
+
+<a href="{% url 'home' %}" class="btn btn-secondary"> Back </a>
+{% endblock %}

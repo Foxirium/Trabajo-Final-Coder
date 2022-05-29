@@ -3,12 +3,15 @@
 
 {% load static %}
 
+
 {% block CssQueCambia %}
 <link href="{% static 'appChernobyl/css/styles2.css' %}" rel="stylesheet" />
 {% endblock %}
 
 {% block ContentThatChanges %}
 <!--- Todo lo que va a cambiar en la pag stalker --->
+
+{% if request.user.is_authenticated %}
 
 <table class="table table-bordered">
         <thead style="color:bisque">
@@ -25,9 +28,9 @@
         <tbody> {% for stalker in object_list %}
 
 
-                <td style="color:bisque"> {{stalker.name}}
-                <td style="color:bisque"> {{stalker.surname}}
-                <td style="color:bisque"> {{stalker.faction}}
+                <td style="color:bisque">{{stalker.name}}
+                <td style="color:bisque">{{stalker.surname}}
+                <td style="color:bisque">{{stalker.faction}}
         
                         <td>
                                 <button><a href="{% url 'stalker_detalle' stalker.id %}">Detail</a></button>
@@ -40,7 +43,9 @@
 
 </table>
 
-<button class="btn btn-primary"><a style="color:brown" href="{% url 'stalker_crear' %}">CREATE</a></button>
+<a href="{% url 'stalkers' %}">Back</a>
+{% else %}
+        <p style="color:bisque"> Necesitas estar logueado para realizar esa accion</p><a style="color:brown" href="{% url 'Login' %}">Log In</a></button>
 
-
+{% endif %}        
 {% endblock %}

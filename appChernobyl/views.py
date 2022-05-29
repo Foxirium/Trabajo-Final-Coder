@@ -1,9 +1,8 @@
 
-from turtle import title
+from logging import raiseExceptions
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from pkg_resources import require
 from appChernobyl.forms import Formulario_Stalkers, Formulario_Factions, Formulario_Artifacts, UserCreationForm, UserRegisterForm, UserEditForm, AddAvatar, Formulario_Posts
 from appChernobyl.models import *
 from django.http import HttpResponse
@@ -13,7 +12,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 
 
 # Create your views here.
@@ -27,6 +26,9 @@ def inicio(request):
 
 
 
+def stalkers(request):
+
+    return render(request, 'appChernobyl/stalkers.html')
 
 
 
@@ -41,7 +43,7 @@ def inicio(request):
 #Formulario stalkers
 
 @login_required
-def stalkers(request):
+def stalkers2(request):
 
 
     if request.method == 'POST': #Si entra por Post
@@ -60,39 +62,41 @@ def stalkers(request):
 
             miFormulario = Formulario_Stalkers() #Formulario Vacio
 
-    return render(request, 'appChernobyl/stalkers.html', {"miFormulario":miFormulario})    
+    return render(request, 'appChernobyl/stalkers2.html', {"miFormulario":miFormulario})    
 #------------------------------------------------------------------------------------------------------
 
 
 
 
-class StalkerList(ListView):
+class StalkerList(LoginRequiredMixin, ListView):
 
     model = Stalker
     template_name = 'appChernobyl/stalker_list.html'
 
-class StalkerDetail(DetailView):
+class StalkerDetail(LoginRequiredMixin, DetailView):
 
     model = Stalker
     template_name = 'appChernobyl/stalker_detalle.html'
 
-class StalkerCreate(CreateView):
+class StalkerCreate(LoginRequiredMixin, CreateView):
 
     model = Stalker
     success_url = reverse_lazy ('stalker_listar')
     fields = ['name', 'surname','faction', 'email', 'dateOfBirth']    
 
-class StalkerUpdate(UpdateView):
+class StalkerUpdate(LoginRequiredMixin, UpdateView):
 
     model = Stalker
     success_url = reverse_lazy ('stalker_listar')
     fields = ['name', 'surname','faction', 'email', 'dateOfBirth']
 
-class StalkerDelete(DeleteView): 
+
+class StalkerDelete(LoginRequiredMixin, DeleteView): 
 
     model = Stalker
     success_url = reverse_lazy ('stalker_listar')
-    fields = ['name', 'surname','faction', 'email', 'dateOfBirth']       
+    fields = ['name', 'surname','faction', 'email', 'dateOfBirth']
+    raise_exception = True       
 
 
 
@@ -383,3 +387,42 @@ def crearPost(request):
 def padre(request):
     return render(request, 'appChernobyl/padre.html')
 
+
+
+
+#-----------------------------------------------------------------------------------------------------
+##############################################CRUD POST##############################################    
+
+
+class PostList(ListView):
+
+    model = Post
+    template_name = 'appChernobyl/post_list.html'
+
+class PostDetail(DetailView):
+
+    model = Post
+    template_name = 'appChernobyl/post_detalle.html'
+
+class PostCreate(CreateView):
+
+    model = Post
+    success_url = reverse_lazy ('post_listar')
+    fields = ['title', 'subtitle','body', 'author', 'date']    
+
+class PostUpdate(UpdateView):
+
+    model = Post
+    success_url = reverse_lazy ('post_listar')
+    fields = ['title', 'subtitle','body', 'author', 'date']
+
+class PostDelete(DeleteView): 
+
+    model = Post
+    success_url = reverse_lazy ('post_listar')
+    fields = ['title', 'subtitle','body', 'author', 'date']      
+
+
+
+#-----------------------------------------------------------------------------------------------------
+         

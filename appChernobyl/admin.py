@@ -11,3 +11,4 @@ admin.site.register(Levels)
 admin.site.register(Avatar)
 admin.site.register(Post)
 
+

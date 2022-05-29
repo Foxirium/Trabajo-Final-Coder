@@ -4,6 +4,8 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from ckeditor.widgets import CKEditorWidget
+from ckeditor.fields import RichTextField
+from .models import *
 #-------------------------------------------------------------------------
 #Clase Formulario Stalkers
 class Formulario_Stalkers(forms.Form):
@@ -78,11 +80,12 @@ class Formulario_Posts(forms.Form):
 
     title= forms.CharField(max_length= 50)
     subtitle= forms.CharField(max_length= 50)
-    body= forms.CharField(widget=CKEditorWidget())
+    body= RichTextField()
     author= forms.CharField(max_length=30)
     date = forms.DateField()
-    
 
+
+#------------------------------------------------------------------------
 
 
 

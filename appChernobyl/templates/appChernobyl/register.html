@@ -11,15 +11,16 @@
 
 
 
-<form action="" method="POST">
+<form action="" method="POST" enctype="multipart/form-data">
     
         {% csrf_token %}
 
+    <table>
+        {{ formulario.as_table }}
+    </table>
 
-        {{ formulario.as_p }}
-
-   
-    <button type="submit"> Register </button>
+    <br>
+    <button type="submit" class ="btn btn-sm btn-primary"> Register </button>
 
 </form>
 

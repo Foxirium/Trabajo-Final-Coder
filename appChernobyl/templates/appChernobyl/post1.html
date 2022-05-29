@@ -1,0 +1,68 @@
+{% extends "appChernobyl/inicio.html" %}
+<!--- heredo del padre --->
+
+{% load static %}
+
+{% block CssQueCambia %}
+<link href="{% static 'appChernobyl/css/styles2.css' %}" rel="stylesheet" />
+{% endblock %}
+
+{% block ContentThatChanges %}
+<!--- Todo lo que va a cambiar en la pag stalker --->
+
+
+<h1 class="mx-auto my-0 text-uppercase">Post Page</h1>
+
+
+{% if miFormulario.errors %}
+
+<p style="color: red;"> Estan mal los datos</p>
+
+{% endif %}
+
+
+<div class = "main-container">
+    <h1>Create Post</h1>
+<form style= "color: bisque;"  action="" method="POST" enctype="multipart/form-data">
+    
+        {% csrf_token %}
+        {{ form.media }}
+
+    
+    <input type="submit", value="CREATE">
+
+</form>
+
+</br>
+</div>
+
+<section class="s1"></section>
+    <div class="main-container">
+        <h3 style ="text-align: center;"> All Projects</h3>
+
+        <div class="post-wrapper">
+            {% for posts in post1 %}
+            <div class="post">
+                <img class ="thumbnail" src="{{post.image.url}}">
+                <div class ="post-priview">
+                    <h6 class ="post-title"> {{post1.title}}</h6>
+                    {% for tag in post1.tags.all %}
+                    <span class ="tag"> {{tag}}</span>
+                    {% endfor %}
+                    <hr>
+
+                    <a href="{% url 'post1' post1.id %}"> Read More</a>
+                    <a class ="btn btn-sm btn-primary" href="{% url 'editPost' post1.id %}">Edit</a>
+
+                </div>
+            </div>
+        </div>
+            {% endfor %}
+    </div>
+
+
+
+
+</div>
+
+{% endblock %}

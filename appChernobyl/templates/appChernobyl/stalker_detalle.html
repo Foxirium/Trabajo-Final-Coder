@@ -10,14 +10,32 @@
 {% block ContentThatChanges %}
 <!--- Todo lo que va a cambiar en la pag stalker --->
 
+<table class="table table-bordered">
+    <thead style="color:bisque">
+            <tr>
+                    <td>NAME</td>
+                    <td>SURNAME</td>
+                    <td>FACTION</td>
+                    <td>EMAIL</td>
+                    <td>DATE OF BIRTH</td>
+                    
+            </tr>
+    </thead>
 
-<p style="color:bisque">NAME: <i> {{stalker.name}} </i></p>
-<p style="color:bisque">SURNAME: <i> {{stalker.surname}} </i></p>
-<p style="color:bisque">FACTION: <i> {{stalker.faction}} </i></p>
-<p style="color:bisque">EMAIL: <i> {{stalker.email}} </i></p>
-<p style="color:bisque">DATE OF BIRTH: <i> {{stalker.dateOfBirth}} </i></p>
+
+
+
+        <tbody>
+            <td style="color:bisque"> {{stalker.name}}</td>
+            <td style="color:bisque"> {{stalker.surname}}</td>
+            <td style="color:bisque">{{stalker.faction}}</td>
+            <td style="color:bisque"> {{stalker.email}} </td>
+            <td style="color:bisque"> {{stalker.dateOfBirth}}</td>
+        </tbody>
+
 
 <p>
+</table>   
     <a href="{% url 'stalker_listar' %}">Back</a>
 </p>
 

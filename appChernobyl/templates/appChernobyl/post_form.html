@@ -1,0 +1,45 @@
+{% extends "appChernobyl/inicio.html" %}
+<!--- heredo del padre --->
+
+{% load static %}
+
+{% block CssQueCambia %}
+<link href="{% static 'appChernobyl/css/styles2.css' %}" rel="stylesheet" />
+{% endblock %}
+
+{% block ContentThatChanges %}
+<!--- Todo lo que va a cambiar en la pag stalker --->
+
+
+<h1 class="mx-auto my-0 text-uppercase">Post Page</h1>
+<br>
+
+
+{% if miFormulario.errors %}
+
+<p style="color: red;"> Estan mal los datos</p>
+
+{% endif %}
+
+
+<form style= "color: bisque;"  action="" method="POST" enctype="multipart/form-data">{% csrf_token %}
+
+    <table>
+        {{ form.media }}
+        {{ form.as_table }}
+
+    </table>
+    <br>
+    <input type="submit", value="CREATE">
+
+</form>
+
+</br>
+
+<a class="btn btn-primary" href="{% url 'post_listar' %}">Search Post</a>
+
+
+
+
+
+{% endblock %}

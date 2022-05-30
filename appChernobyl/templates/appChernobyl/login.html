@@ -1,4 +1,4 @@
-{% extends "appChernobyl/inicio.html" %}
+{% extends "appChernobylBlog/templateprueba.html" %}
 <!--- heredo del padre --->
 
 {% load static %}
@@ -7,8 +7,12 @@
 <link href="{% static 'appChernobyl/css/styles2.css' %}" rel="stylesheet" />
 {% endblock %}
 
+
 {% block ContentThatChanges %}
 <!--- Todo lo que va a cambiar en la pag stalker --->
+
+<h1>Log In</h1>
+<br>
 
 {% if not request.user.is_authenticated %}
                         <h1>Please Sign In</h1>

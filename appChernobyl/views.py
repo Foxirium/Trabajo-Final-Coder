@@ -101,17 +101,6 @@ class StalkerDelete(LoginRequiredMixin, DeleteView):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 #------------------------------------------------------------------------------------------------------
 def busqueda_stalkers(request):
 
@@ -135,25 +124,7 @@ def buscar(request):
         return render(request, "appChernobyl/resultado_busquedastalkers.html") 
 
 
-              
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            
 
 
 #------------------------------------------------------------------------------------------------------

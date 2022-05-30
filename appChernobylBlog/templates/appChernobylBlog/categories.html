@@ -1,0 +1,28 @@
+{% extends "appChernobylBlog/templateprueba.html"  %}
+
+
+
+{% block ContentThatChanges %}
+
+<head> {{cats}} </head>
+
+<br>
+<ul>
+<body>
+    {% for post in post_category %}
+    <br>
+        <a href="{% url 'post_detail' post.id %}"> {{post.title}} - {{post.category}} - {{post.author}} - {{post.date}}</a> 
+        
+        <a href="{% url 'post_update'  post.id %} ">(Edit)</a><br>
+        
+
+        {{post.body  | slice:":50" | safe}}
+
+
+    {% endfor %}
+</ul>    
+</body>
+</html>
+
+
+{% endblock %}

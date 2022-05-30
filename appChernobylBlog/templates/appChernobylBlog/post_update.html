@@ -1,19 +1,19 @@
 {% extends "appChernobylBlog/templateprueba.html"  %}
 
-{% block title %} Creating your Post {% endblock %}
+{% block title %} Edit your Post {% endblock %}
 
 
 {% block ContentThatChanges %}
 
 
-    <h3 style=color:bisque>Create your post</h3>
+    <h3 style=color:bisque>Edit your post</h3>
 
 <div class="mb-5" >    
     <form style=color:bisque method="POST">
         {% csrf_token %}
         {{form.as_p}}
 </div>
-        <button class="btn btn-secondary"> Post </button>
+        <button class="btn btn-secondary"> Update </button>
     </form>
 
     <br>

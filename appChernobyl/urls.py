@@ -1,8 +1,10 @@
-from django.urls import path
+from django.urls import path, include
 from .views import *
 from django.contrib.auth.views import LogoutView
+from appChernobylBlog.views import *
 
 urlpatterns = [
+    
     path('', inicio, name = 'inicio'),
     path('stalkers2/', stalkers2, name = 'stalkers2'),
     path('factions/', factions_list, name = 'factions'),
@@ -16,7 +18,8 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(template_name='appChernobyl/logout.html'), name= 'Logout'),
     path('editarPerfil/', editRegister, name='editarPerfil'),
     path('agregarAvatar/', AddAvatar, name='Agregar Avatar'),
-    path('post/', post, name = 'Post'),
+    #path('post/', post, name = 'Post'),
+    path('', HomeView.as_view(), name="post_home"),
     path('crearPost/', crearPost, name= 'crearPost'),
 
 

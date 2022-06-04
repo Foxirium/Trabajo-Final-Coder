@@ -1,19 +1,27 @@
-{% extends "appChernobylBlog/templateprueba.html"  %}
+{% extends "appChernobylBlog/blog_inicio.html"  %}
 
-
+{% block ContentThatChangesInterlineado %}
+<br>
+<br>
+<br>
+<div class="container px-5 px-lg-10 d-flex h-100 align-items-left ">
+    <div class="d-flex justify-content-left">
+        <div class="text-left">
+{% endblock %}
 
 {% block ContentThatChanges %}
 
-</head>
 <br>
 <body>
     {% for post in object_list %}
     <br>
-    <ul>
-        <a href="{% url 'post_detail' post.id %}">          <h3>{{post.title}}</h3></a> - 
-        <a href="{% url 'post_category' post.category %}">  {{post.category}}</a> -
-                                                            {{post.author}} - 
-                                                            {{post.date}} -
+ 
+    <table>
+        <ul style="color:bisque">
+        <a href="{% url 'post_detail' post.id %}">          <h2>{{ post.title }}</h2></a> - 
+        <a href="{% url 'post_category' post.category %}">  {{ post.category }}</a> -
+                                                            {{ post.author }} - 
+                                                            {{ post.date }} -
         {% if user.is_authenticated %}
             {% if user.id == post.author.id %}
         <a href="{% url 'post_update'  post.id %} ">(Edit)</a>
@@ -21,12 +29,16 @@
             {% endif %}
         {% endif %}    
         <br>
-        {{post.body | slice:":50" | safe }}
+        {{ post.abstract }}
+        </ul>
+    </table>
 
-    </ul>
+    <hr style="color:bisque"/>
+
     {% endfor %}
 </body>
+
+
+
 </html>
-
-
 {% endblock %}

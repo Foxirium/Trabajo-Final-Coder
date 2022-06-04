@@ -2,48 +2,6 @@
 <html lang="en">
     <head>
 
- <!--- Estilo para los botones-->
- {% block ColourButtonsChange %}
-<style>
-
-.button {
-  border: none;
-  color: white;
-  padding: 16px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  transition-duration: 0.4s;
-  cursor: pointer;
-}
-
-.button1 {
-  background-color: white; 
-  color: black; 
-  border: 2px solid #4CAF50;
-}
-
-.button1:hover {
-  background-color: #4CAF50;
-  color: white;
-}
-
-.button2 {
-  background-color: white; 
-  color: red; 
-  border: 2px solid #008CBA;
-}
-
-.button2:hover {
-  background-color: #2f0eec;
-  color: yellow;
-}
-
-</style>
-
-{% endblock %}       
 
         {% load static %}
 
@@ -91,26 +49,40 @@
                     <li class="nav-item">
                       <a class="nav-link active" aria-current="page" href="{% url 'inicio' %}">Home</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'stalkers' %}">Stalkers</a>
-                        <a class="nav-link" href="{% url 'Login' %}">Login</a>
-                        <a class="nav-link" href="{% url 'Register' %}">Register</a>
+                    <li><a class="nav-link" href="{% url 'stalkers' %}">Stalkers</a></li> 
+                    <li><a class="nav-link" href="{% url 'factions' %}">Factions</a></li>
+                    <li><a class="nav-link" href="{% url 'artifacts' %}">Artifacts</a></li>
+                    <li>
+                   
+
+                    
+
+                  {% if request.user.is_authenticated %}
+                  <a class="nav-link" href="{% url 'Logout' %}">Logout</a>
+                  {% else %}
+                  <a class="nav-link" href="{% url 'Login' %}">Login</a>
+                  {% endif %}
+                  
+                  {% if request.user.is_authenticated %}
+                  {% else %}
+                  <a class="nav-link" href="{% url 'Register' %}">Register</a>
+                  {% endif %}
 
                     </li>
                     <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Post options
+                      <a class="nav-link dropdown-toggle" href="{% url 'post_home' %}" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Post Menu
                       </a>
                       <ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">
-                        
-                        <li><a class="dropdown-item" href="{% url 'factions' %}">Factions</a></li>
-                        <li><a class="dropdown-item" href="{% url 'artifacts' %}">Artifacts</a></li>
-                        <li>
+                      
                           <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item">Posts</a></li>
-                        <li><a class="dropdown-item" href="{% url 'post_add' %}">Create</a></li>
+                        {% if request.user.is_authenticated %}
+                        <li><a class="dropdown-item" href="{% url 'post_add' %}">Create Post</a></li>
                         <li><a class="dropdown-item" href="{% url 'post_home' %}">Recent Posts</a></li>
+                        <li><a class="dropdown-item" href="{% url 'profile_create' %}">Create Blog Profile</a></li>
+                        <li><a class="dropdown-item" href="{% url 'profile_list' %}">Search Blog Profiles</a></li>
+                        {% endif %}
                       </ul>
                     </li>
                   </ul>
@@ -131,8 +103,7 @@
                         <h2 class="text-white-50 mx-auto mt-2 mb-5">The Zone is waiting..</h2>
 
                         {% if request.user.is_authenticated %}
-                        <img height= "40px" src="{{avatar}}" alt=""/>
-                        <p class = "text-muted small mb-4 mb-lg-0" style="color:crimson"> You have entered the zone, {{user.username}} </p>
+                        <p class = "text-muted small mb-4 mb-lg-0" style="color:bisque"> You have entered the zone, {{user.username}} </p>
                         {% endif %}
 
                         {% if not request.user.is_authenticated %}
@@ -166,11 +137,11 @@
          <div class="container px-4 px-lg-5">Copyright &copy; Chernobyl Archives 2022</div>
         
          <!-- Logos Redes Sociales-->
-         <a class="btn"  href=""><ion-icon name="logo-discord" size="large">Discord</ion-icon></a>
-         <a class="btn"  href=""><ion-icon name="logo-youtube" size="large">Discord</ion-icon></a>
-         <a class="btn"  href=""><ion-icon name="logo-instagram" size="large">Discord</ion-icon></a>
+         <a class="btn"  href="https://discord.gg/fEvVCeFT"><ion-icon name="logo-discord" size="large">Discord</ion-icon></a>
+         <a class="btn"  href="https://www.youtube.com/channel/UCtN-03RtYWkAnV81FCmCVaA"><ion-icon name="logo-youtube" size="large">Discord</ion-icon></a>
          <br></br>
-         <div class="container px-4 px-lg-5"><a class="btn btn-primary" href="">About Me</a></div>
+         <div class="container px-4 px-lg-5"><a class="btn btn-primary" href="{% url 'aboutme_list' %}">About Me</a></div>
+                                              
          
 
         </footer>

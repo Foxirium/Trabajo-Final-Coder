@@ -1,0 +1,45 @@
+{% extends "appChernobylBlog/blog_inicio.html"  %}
+
+{% block title %} <title>About Me</title>{% endblock %}
+
+{% block ContentThatChangesInterlineado %}
+<br>
+<br>
+<br>
+<div class="container px-5 px-lg-10 d-flex h-100 align-items-left justify-content-center ">
+    <div class="d-flex justify-content-center">
+        <div class="text-center">
+{% endblock %}
+
+
+{% block ContentThatChanges %}
+
+{% for mariano in object_list %}
+    <br>
+ 
+    <table>
+        <ul>
+        <img src="{{mariano.image.url}}" class = "" width="250" height="250">
+
+
+
+  
+        <h5 style="color:bisque" class="card-title">{{ mariano.body | safe}}</h5>
+        <hr style="color:bisque">
+        <h3 style="color:bisque">Social Media Links</h3>
+
+        <a class="btn"  href=" https://discord.gg/fEvVCeFT"><ion-icon name="logo-discord" size="large">Discord</ion-icon></a>
+        <a class="btn"  href="https://www.youtube.com/channel/UCtN-03RtYWkAnV81FCmCVaA"><ion-icon name="logo-youtube" size="large">Discord</ion-icon></a>
+
+
+        <p><a class="btn btn-primary" href="{% url 'home' %}">Back</a></p>
+
+        </ul>
+        
+    </table>    
+{% endfor %}
+
+
+    </div>
+</div>
+{% endblock %}

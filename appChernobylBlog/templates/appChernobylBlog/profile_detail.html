@@ -1,0 +1,52 @@
+{% extends "appChernobylBlog/blog_inicio.html"  %}
+
+<!---Cambio el titulo de la pag por el titulo de cada post --->
+{% block title %} {{post.title}} {% endblock %}
+
+{% block ContentThatChangesInterlineado %}
+
+<div class="container px-5 px-lg-10 d-flex h-100 align-items-center justify-content-center ">
+    <div class="d-flex justify-content-left">
+        <div class="text-left">
+{% endblock %}
+
+
+
+{% block ContentThatChanges %}
+
+    <div class="card mb-3 align-items-center justify-content-center " style="max-width: 540px;">
+        <div class="row g-0 align-items-center justify-content-center">
+          <div class="col-md-4">  
+            {% if user.id == profile.id %}   
+            <button>   
+                <a href="{% url 'profile_detail' profile.id %}"> Detail</a>
+            </button>     
+            <button>   
+                <a href="{% url 'profile_update' profile.id %}"> Update </a>
+            </button>
+            <button>   
+                <a href="{% url 'profile_delete' profile.id %}"> Delete </a>
+            </button>
+            {% endif %}
+
+            {% if profile.image %}
+            <img src="{{profile.image.url}}" class = "" width="200" height="200">
+            {% endif %}  
+     
+          </div>
+          <div class="col-md-10 ">
+            <div class="card-body">
+              <h5 class="card-title">{{ profile.name }}</h5>
+              <h5 class="card-title">{{ profile.date }}</h5>
+              <p class="card-text">{{ profile.biography }}</p>
+
+           </div>
+        </div>
+      </div>
+     </div>
+    
+</body>
+</html>
+
+
+{% endblock %}

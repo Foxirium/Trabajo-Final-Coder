@@ -1,4 +1,4 @@
-{% extends "appChernobylBlog/templateprueba.html" %}
+{% extends "appChernobylBlog/blog_inicio.html" %}
 <!--- heredo del padre --->
 
 
@@ -6,6 +6,12 @@
 
 {% block CssQueCambia %}
 <link href="{% static 'appChernobyl/css/styles2.css' %}" rel="stylesheet" />
+{% endblock %}
+{% block ContentThatChangesInterlineado %}
+
+            <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center ">
+                <div class="d-flex justify-content-center">
+                    <div class="text-center">
 {% endblock %}
 
 {% block ContentThatChanges %}

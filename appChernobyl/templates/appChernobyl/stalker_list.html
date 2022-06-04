@@ -1,4 +1,4 @@
-{% extends "appChernobylBlog/templateprueba.html" %}
+{% extends "appChernobylBlog/blog_inicio.html" %}
 <!--- heredo del padre --->
 
 {% load static %}
@@ -7,7 +7,11 @@
 {% block CssQueCambia %}
 <link href="{% static 'appChernobyl/css/styles2.css' %}" rel="stylesheet" />
 {% endblock %}
-
+{% block ContentThatChangesInterlineado %}
+            <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center ">
+                <div class="d-flex justify-content-center">
+                    <div class="text-center">
+{% endblock %}
 {% block ContentThatChanges %}
 <!--- Todo lo que va a cambiar en la pag stalker --->
 
@@ -17,7 +21,6 @@
         <thead style="color:bisque">
                 <tr>
                         <td>NAME</td>
-                        <td>SURNAME</td>
                         <td>FACTION</td>
                         <td>ACTIONS</td>
 
@@ -29,10 +32,10 @@
 
 
                 <td style="color:bisque">{{stalker.name}}
-                <td style="color:bisque">{{stalker.surname}}
                 <td style="color:bisque">{{stalker.faction}}
         
                         <td>
+                                {% if request.user.is.authenticathed}
                                 <button><a href="{% url 'stalker_detalle' stalker.id %}">Detail</a></button>
                                 <button><a href="{% url 'stalker_editar' stalker.id %}">Update</a></button>
                                 <button><a href="{% url 'stalker_borrar' stalker.id %}">Delete</a></button></td>

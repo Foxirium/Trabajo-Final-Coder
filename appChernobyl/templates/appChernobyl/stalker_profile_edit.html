@@ -1,0 +1,38 @@
+{% extends "appChernobylBlog/blog_inicio.html" %}
+<!--- heredo del padre --->
+
+{% load static %}
+
+{% block CssQueCambia %}
+<link href="{% static 'appChernobyl/css/styles2.css' %}" rel="stylesheet" />
+{% endblock %}
+{% block ContentThatChangesInterlineado %}
+            <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center ">
+                <div class="d-flex justify-content-center">
+                    <div class="text-center">
+{% endblock %}
+
+{% block ContentThatChanges %}
+
+<h1> Edit Your Stalker Profile </h1> <h3 style="color:bisque"> {{user.username}} </h3>
+<hr/>
+
+
+
+
+<form action="" method="POST">{% csrf_token %}
+    
+        
+
+    <table>    
+
+
+        {{ formulario.as_table }}
+
+    </table>
+
+    <input type="submit", value="Change Profile">
+
+</form>
+
+{% endblock %}

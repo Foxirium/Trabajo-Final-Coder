@@ -1,23 +1,48 @@
-{% extends "appChernobylBlog/templateprueba.html"  %}
+{% extends "appChernobylBlog/blog_inicio.html"  %}
 
-{% block title %} Creating your Post {% endblock %}
+{% block title %} <title>Creating your Post </title>{% endblock %}
+
+{% block ContentThatChangesInterlineado %}
+<br>
+<br>
+<br>
+<div class="container px-5 px-lg-10 d-flex h-100 align-items-left justify-content-center ">
+    <div class="d-flex justify-content-center">
+        <div class="text-center">
+{% endblock %}
 
 
 {% block ContentThatChanges %}
 
+<br>
+<br>
 
     <h3 style=color:bisque>Create your post</h3>
 
+<!---Paso Formulario para la creacion de los post con Ckeditor ya instalado-->    
 <div class="mb-5" >    
-    <form style=color:bisque method="POST">
+    <form style=color:bisque method="POST", enctype="multipart/form-data">
         {% csrf_token %}
+        {{form.media}}
         {{form.as_p}}
-</div>
+
+
         <button class="btn btn-secondary"> Post </button>
     </form>
 
+ <!---javascript para que el autor sea la persona que esta logueada, determino cual es el user id y busco el elemento id con el nombre author,-->
+ 
+ <script> var name = "{{ user.id }}";
+            document.getElementById("author").value
+            =name;
+
+</script>
+
     <br>
     <br>
+
+<!---vuelvo a los post -->
+
 <a href="{% url 'post_home' %}" class="btn btn-secondary"> Back </a>    
 
 

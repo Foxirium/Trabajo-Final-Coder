@@ -1,17 +1,16 @@
 from pdb import post_mortem
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .models import Post
-from .forms import PostForm
-
+from .models import Mariano, Post, Comment, Profile
+from .forms import PostForm, AddCommentForm
 
 # Create your views here.
 
 
 def home(request):
     
-    return render(request, 'appChernobylBlog/templateprueba.html', {})
+    return render(request, 'appChernobylBlog/blog_inicio.html', {})
 
 #Creamos clase HomeView y le pasamos ListView para que nos liste en el home todos los post
 class HomeView(ListView):
@@ -19,7 +18,7 @@ class HomeView(ListView):
     model = Post
     template_name = 'appChernobylBlog/home.html'
 #Ordeno por id del mas nuevo al mas viejo
-    ordering = ['-date']
+    ordering = ['date']
 
 #Creamos clase PostDetail y le pasamos DetailView para que muestre en detalle ese post
 class PostDetail(DetailView):
@@ -34,6 +33,7 @@ class PostCreate(CreateView):
     form_class= PostForm
     success_url = reverse_lazy ('post_home') 
 
+#Creamos clase PostUpdate y le pasamos Update, form_class creado en form para darle estilo al formulario de creacion
 class PostUpdate(UpdateView):
     model = Post
     template_name = 'appChernobylBlog/post_update.html'
@@ -58,8 +58,60 @@ def CategoryView(request, cats):
 
 
 
+class CommentCreate(CreateView):
+
+    model = Comment
+    form_class = AddCommentForm
+    template_name = 'appChernobylBlog/comment_form.html'
+    success_url = reverse_lazy ('post_home') 
+
+
+#Cuando un usuario crea un comentario, necesito ese formulario para relacionarlo con el post id. Si el formulario es correcto, necesito asociar la instancia del post id con la que se paso en la URL que se pasa como kwargs
+    def form_valid(self, form):
+        form.instance.post_id = self.kwargs['pk']
+
+        return super().form_valid(form)
 
 
 
 
-#
+
+#Profile CRUD
+
+class ProfileList(ListView):
+
+    model = Profile
+    template_name = 'appChernobylBlog/profile_list.html'
+
+class ProfileDetail(DetailView):
+
+    model = Profile
+    template_name = 'appChernobylBlog/profile_detail.html'
+
+class ProfileCreate(CreateView):
+
+    model = Profile
+    success_url = reverse_lazy ('post_home')
+    fields = ['name', 'biography', 'image']
+
+class ProfileUpdate(UpdateView):
+
+    model = Profile
+    success_url = reverse_lazy ('profile_list')
+    fields = ['name', 'biography', 'image']
+
+
+class ProfileDelete(DeleteView):
+
+    model = Profile
+    success_url = reverse_lazy ('profile_list')
+    fields = ['name', 'bio', 'image']    
+
+           
+
+
+class AboutMeList(ListView):
+
+    model = Mariano
+    template_name = 'appChernobylBlog/aboutme_list.html'
+

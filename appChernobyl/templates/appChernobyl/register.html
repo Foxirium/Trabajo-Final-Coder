@@ -1,7 +1,12 @@
-{% extends "appChernobylBlog/templateprueba.html" %}
+{% extends "appChernobylBlog/blog_inicio.html" %}
 <!--- heredo del padre --->
 
 {% load static %}
+{% block ContentThatChangesInterlineado %}
+            <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center ">
+                <div class="d-flex justify-content-center">
+                    <div class="text-center">
+{% endblock %}
 
 {% block CssQueCambia %}
 <link href="{% static 'appChernobyl/css/styles2.css' %}" rel="stylesheet" />
@@ -11,7 +16,7 @@
 
 
 
-<form action="" method="POST" enctype="multipart/form-data">
+<form style="color:bisque" action="" method="POST" enctype="multipart/form-data">
     
         {% csrf_token %}
 

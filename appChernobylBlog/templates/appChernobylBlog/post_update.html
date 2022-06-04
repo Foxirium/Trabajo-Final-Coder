@@ -1,6 +1,15 @@
-{% extends "appChernobylBlog/templateprueba.html"  %}
+{% extends "appChernobylBlog/blog_inicio.html"  %}
 
 {% block title %} Edit your Post {% endblock %}
+
+{% block ContentThatChangesInterlineado %}
+<br>
+<br>
+<br>
+<div class="container px-5 px-lg-10 d-flex h-100 align-items-left justify-content-center ">
+    <div class="d-flex justify-content-center">
+        <div class="text-center">
+{% endblock %}
 
 
 {% block ContentThatChanges %}
@@ -11,14 +20,20 @@
 <div class="mb-5" >    
     <form style=color:bisque method="POST">
         {% csrf_token %}
-        {{form.as_p}}
+        {{ form.media }}
+        {{ form.as_p }}
 </div>
         <button class="btn btn-secondary"> Update </button>
     </form>
 
     <br>
     <br>
-<a href="{% url 'post_home' %}" class="btn btn-secondary"> Back </a>    
+<a href="{% url 'post_home' %}" class="btn btn-secondary"> Back </a>
+
+<br>
+<br>
+<br>
+
 
 
 {% endblock %}

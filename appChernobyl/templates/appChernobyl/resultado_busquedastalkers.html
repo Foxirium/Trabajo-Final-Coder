@@ -1,8 +1,13 @@
-{% extends "appChernobylBlog/templateprueba.html" %}
+{% extends "appChernobylBlog/blog_inicio.html" %}
 <!--- heredo del padre --->
 
 {% load static %}
 
+{% block ContentThatChangesInterlineado %}
+            <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center ">
+                <div class="d-flex justify-content-center">
+                    <div class="text-center">
+{% endblock %}
 
 {% block ContentThatChanges %}
 
@@ -23,7 +28,6 @@
                         <td>NAME</td>
                         <td>SURNAME</td>
                         <td>FACTION</td>
-                        <td>EMAIL</td>
                         <td>DATE OF BIRTH</td>
                         
                 </tr>
@@ -36,7 +40,6 @@
                 <td style="color:bisque"> {{stalker.name}}</td>
                 <td style="color:bisque"> {{stalker.surname}}</td>
                 <td style="color:bisque">{{stalker.faction}}</td>
-                <td style="color:bisque"> {{stalker.email}} </td>
                 <td style="color:bisque"> {{stalker.dateOfBirth}}</td>
             </tbody>
     

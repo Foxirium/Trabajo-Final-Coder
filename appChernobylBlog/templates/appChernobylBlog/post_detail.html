@@ -1,15 +1,28 @@
-{% extends "appChernobylBlog/templateprueba.html"  %}
+{% extends "appChernobylBlog/blog_inicio.html"  %}
 
 <!---Cambio el titulo de la pag por el titulo de cada post --->
 {% block title %} {{post.title}} {% endblock %}
 
+{% block ContentThatChangesInterlineado %}
+
+<br>
+<br>
+<br>
+<br>
+<div class="container px-5 px-lg-10 d-flex h-100 align-items-center justify-content-left ">
+    <div class="d-flex justify-content-left">
+        <div class="text-left">
+{% endblock %}
+
+
 
 {% block ContentThatChanges %}
+<br>
+<br>
 
 
-
-<h3> {{post.title}} </h3> <small>{{post.category}}</small>
-<small> by: {{post.author}}
+<h3 style="color:bisque"> {{ post.title }} </h3> <small><a href="{% url 'post_category' post.category %}">{{post.category}} </a></small>
+<small style="color:bisque"> by: {{ post.author }}
             {{post.date}}</small>
 
 
@@ -23,8 +36,40 @@
 <br/>
 
 <hr>
-   <h3> {{post.body}} </h3>
 <br>
 <br>
+   {% if post.image %}
+      <img src="{{ post.image.url }}" width="400" height="400">
+   {% endif %}   
+   <div class="p-3 mb-2 bg-dark text-white">{{ post.body  | safe}}
+
+   </div>
+
+     
+<br>
+<br>
+<hr/>
+
+<h2 style="color:bisque"> Comments </h2>
+{% if not post.comments.all %}
+   No Comments Yet...<a href="{% url 'comment_add' post.id %}"> Add One</a>
+{% else %} 
+
+<a href="{% url 'comment_add' post.id %}"> Add One</a>
+
+<br/><br/>
+   {% for comment in post.comments.all %}
+      <strong style="color:bisque">{{ comment.name}} -
+      {{ comment.date }}</strong>
+      <br/>
+      <p style="color:aquamarine">{{ comment.body }}</p>
+   {% endfor %}   
+{% endif %}  
+<br/>
+<br/> 
+<hr>
+
+
+</form>
 <a href="{% url 'post_home' %}" class="btn btn-secondary"> Back </a>
 {% endblock %}

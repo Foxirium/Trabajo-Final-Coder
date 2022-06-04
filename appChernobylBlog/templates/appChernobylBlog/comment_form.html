@@ -1,0 +1,37 @@
+{% extends "appChernobylBlog/templateprueba.html"  %}
+
+{% block title %} Commenting on a Post {% endblock %}
+
+{% block ContentThatChangesInterlineado %}
+<br>
+<br>
+<br>
+<div class="container px-5 px-lg-10 d-flex h-100 align-items-left justify-content-center ">
+    <div class="d-flex justify-content-center">
+        <div class="text-center">
+{% endblock %}
+
+
+{% block ContentThatChanges %}
+
+<br>
+<br>
+
+    <h3 style=color:bisque>Create your comment</h3>
+
+<!---Paso Formulario para la creacion de los post con Ckeditor ya instalado-->    
+<div class="mb-5" >    
+    <form style=color:bisque method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+
+
+        <button class="btn btn-secondary"> Comment </button>
+    </form>
+
+ 
+
+<a href="{% url 'post_home' %}" class="btn btn-secondary"> Back </a>    
+
+
+{% endblock %}

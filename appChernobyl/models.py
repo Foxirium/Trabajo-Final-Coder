@@ -14,7 +14,6 @@ class Stalker(models.Model):
     name = models.CharField(max_length=30, null=True)
     surname = models.CharField(max_length=30, null=True)
     faction = models.CharField(max_length=30, null=True)
-    email = models.EmailField(null=True)
     dateOfBirth = models.DateField(null=True)
 
     def __str__(self):
@@ -65,28 +64,6 @@ class Avatar(models.Model):
 
     avatar = models.ImageField(upload_to='avatar', null=True, blank = True)
 
-
-#Clase models Posts
-#Titulo que no pueda ser nulo ni dejado en blanco
-#SubTitulo idem
-#Body (instalado ckeditor, y de la libreria ckeditor.fields importardo RichTextField)
-#autor(Ligado a una key, stalker. Si borra el usuario = stalker, se borran sus post tambien)
-#imagen(Ingresar imagen)
-#Date (Fecha creacion del post)
-
-class Post(models.Model):
-
-    title= models.CharField(null = False, blank= False, max_length= 50)
-    subtitle= models.CharField(null= False, blank= False, max_length=100)
-    body= RichTextField()
-    author= models.CharField (null=False, blank = False, max_length=50)
-    date= models.DateField('Fecha de Creacion')
-    status = models.BooleanField('Publish/Not Publish', default = True)
-
-
-#Como los visualizo Titulo y Autor
-    def __str__(self):
-        return self.title + " - " + self.author
 
 
 

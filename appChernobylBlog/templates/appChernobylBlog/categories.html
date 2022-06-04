@@ -1,10 +1,20 @@
-{% extends "appChernobylBlog/templateprueba.html"  %}
+{% extends "appChernobylBlog/blog_inicio.html"  %}
 
 
+{% block ContentThatChangesInterlineado %}
+<br>
+<br>
+<br>
+<br>
+
+<div class="container px-5 px-lg-10 d-flex h-100 align-items-left">
+    <div class="d-flex justify-content-center">
+        <div class="text-left">
+{% endblock %}
 
 {% block ContentThatChanges %}
 
-<head> {{cats}} </head>
+<h1> {{cats}} </h1>
 
 <br>
 <ul>

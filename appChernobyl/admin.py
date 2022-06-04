@@ -7,8 +7,13 @@ from .models import *
 admin.site.register(Stalker)
 admin.site.register(Faction)
 admin.site.register(Artifact)
-admin.site.register(Levels)
 admin.site.register(Avatar)
-admin.site.register(Post)
+
+
+#Todavia no se implementa
+admin.site.register(Levels)
+
+
+
 
 

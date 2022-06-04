@@ -1,4 +1,4 @@
-{% extends "appChernobylBlog/templateprueba.html" %}
+{% extends "appChernobylBlog/blog_inicio.html" %}
 <!--- heredo del padre --->
 
 {% load static %}
@@ -7,30 +7,48 @@
 <link href="{% static 'appChernobyl/css/styles2.css' %}" rel="stylesheet" />
 {% endblock %}
 
+{% block ContentThatChangesInterlineado %}
+            <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center ">
+                <div class="d-flex justify-content-center">
+                    <div class="text-center">
+{% endblock %}
+
 
 {% block ContentThatChanges %}
 <!--- Todo lo que va a cambiar en la pag stalker --->
 
+
+
 <h1>Log In</h1>
 <br>
 
+
+
 {% if not request.user.is_authenticated %}
-                        <h1>Please Sign In</h1>
+        <h1>Please Sign In</h1>
 {% endif %}
 
 
 
-<form style= "color: bisque;"  action="" method="POST">
+
+
+
+
+    <form style= "color: bisque;"  action="" method="POST">
     
-    {% csrf_token %}
+        {% csrf_token %}
     
-    {{ formulario.as_p }}
+        {{ formulario.as_p }}
     
    
-    <button class="btn btn-primary" type="submit"> Log In </button>
+        <button href="{% url 'Login' %}" class="btn btn-primary" type="submit"> Log In </button>
 
 
-</form>
+    </form>
+
+<br>
+
+<h3 style="color:bisque"> <a href="{% url 'Login' %}">{{mensaje}} </a></h3>
 
 </br>
 <p style="color:bisque">Don´t have an account? <a class="register" href="{% url 'Register' %}">Sign Up here</a></p>

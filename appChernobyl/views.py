@@ -173,7 +173,7 @@ def register(request):
             username=formulario.cleaned_data['username']
             formulario.save()
 
-            return render(request, "appChernobylBlog/blog_inicio.html", {"mensaje":"Succesfully Register"})
+            return render(request, "appChernobylBlog/blog_inicio.html", {"mensaje":"Succesfully Registered"})
 
     else:
         formulario = UserRegisterForm()

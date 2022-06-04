@@ -1,4 +1,4 @@
-{% extends "appChernobylBlog/templateprueba.html"  %}
+{% extends "appChernobylBlog/blog_inicio.html"  %}
 
 {% block title %} Commenting on a Post {% endblock %}
 
@@ -19,7 +19,6 @@
 
     <h3 style=color:bisque>Create your comment</h3>
 
-<!---Paso Formulario para la creacion de los post con Ckeditor ya instalado-->    
 <div class="mb-5" >    
     <form style=color:bisque method="POST">
         {% csrf_token %}

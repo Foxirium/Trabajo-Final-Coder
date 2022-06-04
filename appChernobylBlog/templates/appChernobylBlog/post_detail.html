@@ -19,6 +19,8 @@
 {% block ContentThatChanges %}
 <br>
 <br>
+<br>
+<br>
 
 
 <h3 style="color:bisque"> {{ post.title }} </h3> <small><a href="{% url 'post_category' post.category %}">{{post.category}} </a></small>
@@ -39,7 +41,7 @@
 <br>
 <br>
    {% if post.image %}
-      <img src="{{ post.image.url }}" width="400" height="400">
+      <img src="{{ post.image.url }}" width="300" height="300">
    {% endif %}   
    <div class="p-3 mb-2 bg-dark text-white">{{ post.body  | safe}}
 

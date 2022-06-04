@@ -54,11 +54,12 @@
                     <li class="nav-item">
                       <a class="nav-link active" aria-current="page" href="{% url 'inicio' %}">Home</a>
                     </li>
+                    {% if request.user.is_authenticated %}
                     <li class="nav-item">
                       <li><a class="nav-link" href="{% url 'stalkers' %}">Stalkers</a></li> 
                       <li><a class="nav-link" href="{% url 'factions' %}">Factions</a></li>
                       <li><a class="nav-link" href="{% url 'artifacts' %}">Artifacts</a></li>
-
+                      {% endif %}
                       
 
 

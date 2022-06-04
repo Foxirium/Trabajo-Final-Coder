@@ -35,14 +35,16 @@
                 <td style="color:bisque">{{stalker.faction}}
         
                         <td>
-                                {% if request.user.is.authenticathed}
-                                <button><a href="{% url 'stalker_detalle' stalker.id %}">Detail</a></button>
-                                <button><a href="{% url 'stalker_editar' stalker.id %}">Update</a></button>
-                                <button><a href="{% url 'stalker_borrar' stalker.id %}">Delete</a></button></td>
+                                {% if request.user.is_authenticated %}
+                                        <button><a href="{% url 'stalker_detalle' stalker.id %}">Detail</a></button>
+                                        <!--
+                                        <button><a href="{% url 'stalker_editar' stalker.id %}">Update</a></button>
+                                        <button><a href="{% url 'stalker_borrar' stalker.id %}">Delete</a></button></td>
+                                        -->
                         </td>
-        </tbody>
+        </tbody>                {% endif %}
 
-{% endfor %}  
+                {% endfor %}  
 
 </table>
 
